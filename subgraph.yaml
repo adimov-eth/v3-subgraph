@@ -9,11 +9,11 @@ features:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: base
+    network: auroria
     source:
       abi: Factory
-      address: "0x33128a8fC17869897dcE68Ed026d694621f6FDfD"
-      startBlock: 2009445
+      address: "0x4B500Cd5f5ACAf613989E813791Ae14A3Da3081e"
+      startBlock: 547169
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -39,7 +39,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: base
+    network: auroria
     source:
       abi: Pool
     mapping:

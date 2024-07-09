@@ -13,6 +13,7 @@ export enum ChainId {
   MAINNET = 1,
   MATIC = 137,
   OPTIMISM = 10,
+  AURORIA = 205205,
 }
 
 // subgraph does not support string enums, hence these constants
@@ -25,6 +26,7 @@ const CELO_NETWORK_NAME = 'celo'
 const MAINNET_NETWORK_NAME = 'mainnet'
 const MATIC_NETWORK_NAME = 'matic'
 const OPTIMISM_NETWORK_NAME = 'optimism'
+const AURORIA_NETWORK_NAME = 'auroria'
 
 // Note: All token and pool addresses should be lowercased!
 export class SubgraphConfig {
@@ -158,22 +160,50 @@ export function getSubgraphConfig(): SubgraphConfig {
   } else if (selectedNetwork == BLAST_MAINNET_NETWORK_NAME) {
     return {
       factoryAddress: '0x792edAdE80af5fC680d96a2eD80A44247D2Cf6Fd',
-      stablecoinWrappedNativePoolAddress: '0xf52b4b69123cbcf07798ae8265642793b2e8990c', // USDB-WETH 0.3% pool
+      stablecoinWrappedNativePoolAddress: '', // TODO
       stablecoinIsToken0: true,
-      wrappedNativeAddress: '0x4300000000000000000000000000000000000004', // WETH
+      wrappedNativeAddress: '0x7b7E6F779c497df2e9EAF8C311d44A296E4F316D', // WETH
       minimumNativeLocked: BigDecimal.fromString('1'),
       stablecoinAddresses: [
-        '0x4300000000000000000000000000000000000003', // USDB
       ],
       whitelistTokens: [
-        '0x4300000000000000000000000000000000000004', // WETH
-        '0x4300000000000000000000000000000000000003', // USDB
       ],
-      tokenOverrides: [],
+      tokenOverrides: [
+        {
+          address: Address.fromString('0x7b7E6F779c497df2e9EAF8C311d44A296E4F316D'),
+          symbol: 'WSTRAX',
+          name: 'Wrapped STRAX',
+          decimals: BigInt.fromI32(18),
+        },
+      ],
       poolsToSkip: [],
       poolMappings: [],
     }
-  } else if (selectedNetwork == BSC_NETWORK_NAME) {
+  } else if (selectedNetwork == AURORIA_NETWORK_NAME) {
+    return {
+      factoryAddress: '0x4B500Cd5f5ACAf613989E813791Ae14A3Da3081e',
+      stablecoinWrappedNativePoolAddress: '', // USDC-WBNB 0.3% pool
+      stablecoinIsToken0: true,
+      wrappedNativeAddress: '0x7b7E6F779c497df2e9EAF8C311d44A296E4F316D', // WBNB
+      minimumNativeLocked: BigDecimal.fromString('100'),
+      stablecoinAddresses: [
+        '0xcC9c7c69415C10C0d967eDCBaA620f919004B6f5', // DAI
+      ],
+      whitelistTokens: [
+      '0x7b7E6F779c497df2e9EAF8C311d44A296E4F316D', // WSTRAX
+      '0x0F14C19B5a28975B549E037DBC7188FFA63FFeAe', // LUPA
+      '0xB84b0F343c04a31939bA97e2CfEc4639cc413D66', // PUPA
+      '0x83c5DcEcc4a0b1909d4ADe1BB16edDba5e145fCf', // AGI
+      '0x2d9fb245627cFBb14666E0A99Cd26e33f3a3D7E7', // SSI
+      ],
+      tokenOverrides: [
+       
+      ],
+      poolsToSkip: [],
+      poolMappings: [],
+    }
+    }
+    else if (selectedNetwork == BSC_NETWORK_NAME) {
     return {
       factoryAddress: '0xdB1d10011AD0Ff90774D0C6Bb92e5C5c8b4461F7',
       stablecoinWrappedNativePoolAddress: '0x6fe9e9de56356f7edbfcbb29fab7cd69471a4869', // USDC-WBNB 0.3% pool

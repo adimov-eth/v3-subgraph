@@ -7,7 +7,8 @@ import { Pool, Token } from '../src/types/schema'
 import { SubgraphConfig } from '../src/utils/chains'
 import { ZERO_BD, ZERO_BI } from '../src/utils/constants'
 
-const FACTORY_ADDRESS = '0x1F98431c8aD98523631AE4a59f267346ea31F984'
+const FACTORY_ADDRESS = '0x4B500Cd5f5ACAf613989E813791Ae14A3Da3081e'
+const WSTRAX_ADDRESS = '0x7b7E6F779c497df2e9EAF8C311d44A296E4F316D'
 const USDC_MAINNET_ADDRESS = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
 const WETH_MAINNET_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 const WBTC_MAINNET_ADDRESS = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
@@ -15,13 +16,16 @@ export const USDC_WETH_03_MAINNET_POOL = '0x8ad599c3a0ff1de082011efddc58f1908eb6
 export const WBTC_WETH_03_MAINNET_POOL = '0xcbcdf9626bc03e24f779434178a73a0b4bad62ed'
 export const POOL_FEE_TIER_03 = 3000
 
+
+
+
+
 export const TEST_CONFIG: SubgraphConfig = {
   factoryAddress: FACTORY_ADDRESS,
-  stablecoinWrappedNativePoolAddress: USDC_WETH_03_MAINNET_POOL,
+  stablecoinWrappedNativePoolAddress: '',
   stablecoinIsToken0: true,
-  wrappedNativeAddress: WETH_MAINNET_ADDRESS,
+  wrappedNativeAddress: WSTRAX_ADDRESS,
   minimumNativeLocked: ZERO_BD,
-  poolsToSkip: [],
   stablecoinAddresses: [USDC_MAINNET_ADDRESS],
   whitelistTokens: [WETH_MAINNET_ADDRESS, USDC_MAINNET_ADDRESS],
   tokenOverrides: [],
@@ -39,7 +43,7 @@ export const TEST_CONFIG_WITH_NO_WHITELIST: SubgraphConfig = {
   stablecoinAddresses: [USDC_MAINNET_ADDRESS],
   whitelistTokens: [],
   tokenOverrides: [],
-  poolsToSkip: [],
+
   poolMappings: [],
 }
 
@@ -49,7 +53,6 @@ export const TEST_CONFIG_WITH_POOL_SKIPPED: SubgraphConfig = {
   stablecoinIsToken0: true,
   wrappedNativeAddress: WETH_MAINNET_ADDRESS,
   minimumNativeLocked: ZERO_BD,
-  poolsToSkip: [],
   stablecoinAddresses: [USDC_MAINNET_ADDRESS],
   whitelistTokens: [WETH_MAINNET_ADDRESS, USDC_MAINNET_ADDRESS],
   tokenOverrides: [],
